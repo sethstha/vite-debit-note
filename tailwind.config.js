@@ -2,10 +2,10 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -71,7 +71,10 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      boxShadow: {
+        box: "0px 0px 0px 0px rgba(0, 23, 31, 0.05), 0px 2px 4px 0px rgba(0, 23, 31, 0.05), 0px 8px 8px 0px rgba(0, 23, 31, 0.04), 0px 17px 10px 0px rgba(0, 23, 31, 0.03), 0px 30px 12px 0px rgba(0, 23, 31, 0.01), 0px 48px 13px 0px rgba(0, 23, 31, 0.00)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};
