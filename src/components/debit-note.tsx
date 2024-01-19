@@ -1,5 +1,6 @@
 import ItemList from "@/components/ItemList";
 import AddProduct from "@/components/add-product";
+import Calculation from "@/components/caclunation";
 import Date from "@/components/date";
 import Supplier from "@/components/supplier";
 import { Button } from "@/components/ui/button";
@@ -45,7 +46,7 @@ export default function DebitNote() {
   });
 
   const onSubmit = (values: DebitNode) => {
-    console.log(values);
+    // console.log(values);
   };
 
   const onProductAdd = (value: string) => {
@@ -54,11 +55,10 @@ export default function DebitNote() {
       name: currentItem.name,
       rate: currentItem.price,
       batch: currentItem.batch,
-      discount: 0,
-      qty: 1,
+      discount: "0",
+      qty: "1",
       sku: currentItem.sku,
-      tax: 13,
-      amount: currentItem.price,
+      tax: "13",
     });
   };
 
@@ -117,6 +117,7 @@ export default function DebitNote() {
             <div className="flex">
               <AddProduct onProductAdd={(value) => onProductAdd(value)} />
             </div>
+            <Calculation />
             <Button type="submit">Submit</Button>
           </form>
         </Form>

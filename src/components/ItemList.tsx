@@ -20,7 +20,13 @@ const ItemList: React.FC<Props> = (props) => {
   const { index, onRemove } = props;
   const { control, watch } = useFormContext<DebitNode>();
   const watchedItem = watch(`items.${index}`);
-  const amount = watchedItem.qty * watchedItem.rate - watchedItem.discount;
+  let amount = 0;
+
+  if (watchedItem) {
+    amount =
+      parseFloat(watchedItem.qty) * parseFloat(watchedItem.rate) -
+      parseFloat(watchedItem.discount);
+  }
 
   return (
     <TableRow>
