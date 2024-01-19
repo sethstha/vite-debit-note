@@ -18,7 +18,7 @@ import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 
-export default function Date() {
+const Date = () => {
   const { control } = useFormContext<DebitNote>();
 
   return (
@@ -65,4 +65,6 @@ export default function Date() {
       )}
     />
   );
-}
+};
+
+export default Date;

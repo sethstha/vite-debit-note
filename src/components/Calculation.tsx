@@ -57,7 +57,7 @@ const Calculation = () => {
           )}
         />
       </div>
-      <div className="space-y-4">
+      <div className="space-y-4 text-xs">
         <div className="flex justify-between">
           <span>Total</span>
           <span>{total}</span>
