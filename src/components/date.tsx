@@ -13,13 +13,13 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { DebitNode } from "@/schemas";
+import { DebitNote } from "@/schemas";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 
 export default function Date() {
-  const { control } = useFormContext<DebitNode>();
+  const { control } = useFormContext<DebitNote>();
 
   return (
     <FormField
@@ -41,7 +41,7 @@ export default function Date() {
                   )}
                 >
                   {field.value ? (
-                    format(field.value, "PPP")
+                    format(field.value, "P")
                   ) : (
                     <span className="text-xs text-gray-400 font-normal">
                       dd/mm/yyyy

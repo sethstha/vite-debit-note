@@ -1,7 +1,7 @@
 import ItemList from "@/components/ItemList";
 import AddProduct from "@/components/AddProduct";
 import CustomField from "@/components/CustomField";
-
+import { CodeBlock, dracula } from "react-code-blocks";
 import { Button } from "@/components/ui/button";
 
 import {
@@ -24,25 +24,37 @@ import {
 } from "@/components/ui/table";
 import { items } from "@/data";
 
-import { DebitNode, debitNodeSchema } from "@/schemas";
+import { DebitNote, DebitNoteSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { X } from "lucide-react";
 import { useFieldArray, useForm } from "react-hook-form";
-import Calculation from "@/components/calculation";
-import Supplier from "@/components/supplier";
-import Date from "@/components/date";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { useState } from "react";
+import Supplier from "@/components/Supplier";
+import Calculation from "@/components/Calculation";
+import Date from "@/components/Date";
 
 export default function DebitNote() {
-  const form = useForm<DebitNode>({
-    resolver: zodResolver(debitNodeSchema),
+  const [isOpen, setIsOpen] = useState(false);
+  const [code, setCode] = useState<string>();
+
+  const form = useForm<DebitNote>({
+    resolver: zodResolver(DebitNoteSchema),
     defaultValues: {
       supplier: "",
       reference: "",
     },
   });
 
-  const { fields, append, remove } = useFieldArray<DebitNode>({
+  const { fields, append, remove } = useFieldArray<DebitNote>({
     control: form.control,
     name: "items",
   });
@@ -60,6 +72,10 @@ export default function DebitNote() {
     });
   };
 
+  const onSubmit = (values: DebitNote) => {
+    setCode(JSON.stringify(values, null, 4));
+    setIsOpen(true);
+  };
   const showCalculation = form.watch("items");
 
   return (
@@ -73,7 +89,7 @@ export default function DebitNote() {
           <Separator />
         </div>
         <Form {...form}>
-          <form>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="space-y-4">
               <div className="grid grid-cols-2 items-start justify-center gap-6">
                 <div className="space-y-4">
@@ -134,6 +150,17 @@ export default function DebitNote() {
           </form>
         </Form>
       </div>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent className="min-w-[600px]">
+          <DialogHeader>
+            <DialogTitle>You have submitted your form</DialogTitle>
+            <DialogDescription>
+              <p className="pb-4">Your form code looks like</p>
+              <CodeBlock text={code} language="json" theme={dracula} />
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

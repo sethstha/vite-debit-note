@@ -8,11 +8,11 @@ import {
 } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { DebitNode } from "@/schemas";
+import { DebitNote } from "@/schemas";
 import { useFormContext } from "react-hook-form";
 
 const Calculation = () => {
-  const { control, watch } = useFormContext<DebitNode>();
+  const { control, watch } = useFormContext<DebitNote>();
   const watchedItem = watch("items");
   let total = 0,
     discount = 0,

@@ -20,12 +20,12 @@ import {
 } from "@/components/ui/popover";
 import { suppliers } from "@/data";
 import { cn } from "@/lib/utils";
-import { DebitNode } from "@/schemas";
+import { DebitNote } from "@/schemas";
 import { CheckIcon, ChevronDown } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 
 export default function Supplier() {
-  const { control, setValue } = useFormContext<DebitNode>();
+  const { control, setValue } = useFormContext<DebitNote>();
   return (
     <FormField
       control={control}
@@ -33,7 +33,7 @@ export default function Supplier() {
       render={({ field }) => (
         <FormItem className="flex flex-col">
           <FormLabel>
-            Language <span className="text-red-400">*</span>
+            Supplier name <span className="text-red-400">*</span>
           </FormLabel>
           <Popover>
             <PopoverTrigger asChild>

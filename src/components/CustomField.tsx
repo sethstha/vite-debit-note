@@ -7,12 +7,12 @@ import {
 } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { DebitNode } from "@/schemas";
+import { DebitNote } from "@/schemas";
 import { ChevronRight } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 
 const CustomField = () => {
-  const { control } = useFormContext<DebitNode>();
+  const { control } = useFormContext<DebitNote>();
   return (
     <div className="space-y-4">
       <div className="flex justify-between">

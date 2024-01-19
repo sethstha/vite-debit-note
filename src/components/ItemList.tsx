@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { TableCell, TableRow } from "@/components/ui/table";
-import { DebitNode } from "@/schemas";
+import { DebitNote } from "@/schemas";
 import { X } from "lucide-react";
 import React from "react";
 import { useFormContext } from "react-hook-form";
@@ -18,7 +18,7 @@ interface Props {
 }
 const ItemList: React.FC<Props> = (props) => {
   const { index, onRemove } = props;
-  const { control, watch } = useFormContext<DebitNode>();
+  const { control, watch } = useFormContext<DebitNote>();
   const watchedItem = watch(`items.${index}`);
   let amount = 0;
 
@@ -113,7 +113,7 @@ const ItemList: React.FC<Props> = (props) => {
         </div>
       </TableCell>
       <TableCell>{amount}</TableCell>
-      <TableCell>
+      <TableCell className="text-right">
         <Button variant="link" onClick={() => onRemove(index)}>
           <X className="h-4 text-red-400" />
         </Button>

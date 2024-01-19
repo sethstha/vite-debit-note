@@ -1,11 +1,13 @@
 import * as z from "zod";
 
-export const debitNodeSchema = z.object({
-  supplier: z.string().min(2).max(50),
-  date: z.date({
-    required_error: "Date is required",
+export const DebitNoteSchema = z.object({
+  supplier: z.string().min(2, {
+    message: "Please select provider name",
   }),
-  reference: z.string().min(2),
+  date: z.date({
+    required_error: "You must select the date",
+  }),
+  reference: z.string().min(2, { message: "Please provide reference number" }),
   note: z.string().optional(),
   terms: z.string().optional(),
   items: z.array(
@@ -22,4 +24,4 @@ export const debitNodeSchema = z.object({
   ),
 });
 
-export type DebitNode = z.infer<typeof debitNodeSchema>;
+export type DebitNote = z.infer<typeof DebitNoteSchema>;
