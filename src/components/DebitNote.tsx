@@ -39,9 +39,8 @@ import {
 } from "@/components/ui/dialog";
 import { useState } from "react";
 import Calculation from "@/components/Calculation";
-import Supplier from "./supplier";
-import Date from "./date";
-
+import Supplier from "@/components/Supplier";
+import Date from "@/components/Date";
 
 const DebitNote = () => {
   const [isOpen, setIsOpen] = useState(false);
