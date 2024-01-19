@@ -74,57 +74,62 @@ export default function DebitNote() {
         </div>
         <Form {...form}>
           <form>
-            <div className="grid grid-cols-2 items-start justify-center gap-6">
-              <div className="space-y-4">
-                <Supplier />
-                <FormField
-                  control={form.control}
-                  name="reference"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>
-                        Reference no <span className="text-red-400">*</span>
-                      </FormLabel>
-                      <FormControl>
-                        <Input placeholder="reference no" {...field} />
-                      </FormControl>
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 items-start justify-center gap-6">
+                <div className="space-y-4">
+                  <Supplier />
+                  <FormField
+                    control={form.control}
+                    name="reference"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>
+                          Reference no <span className="text-red-400">*</span>
+                        </FormLabel>
+                        <FormControl>
+                          <Input placeholder="reference no" {...field} />
+                        </FormControl>
 
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <Date />
-            </div>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[400px]">Item/Product</TableHead>
-                  <TableHead>Qty</TableHead>
-                  <TableHead>Rate</TableHead>
-                  <TableHead>Discount</TableHead>
-                  <TableHead>Tax</TableHead>
-                  <TableHead>Amount</TableHead>
-                  <TableHead></TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {fields.map((_, index) => (
-                  <ItemList
-                    key={index}
-                    index={index}
-                    onRemove={(index) => remove(index)}
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                ))}
-              </TableBody>
-            </Table>
-            <div className="flex">
-              <AddProduct onProductAdd={(value) => onProductAdd(value)} />
-            </div>
-            {showCalculation && showCalculation.length ? <Calculation /> : null}
-            <CustomField />
-            <div className="flex justify-end">
-              <Button type="submit">Submit</Button>
+                </div>
+                <Date />
+              </div>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[400px]">Item/Product</TableHead>
+                    <TableHead>Qty</TableHead>
+                    <TableHead>Rate</TableHead>
+                    <TableHead>Discount</TableHead>
+                    <TableHead>Tax</TableHead>
+                    <TableHead>Amount</TableHead>
+                    <TableHead></TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {fields.map((_, index) => (
+                    <ItemList
+                      key={index}
+                      index={index}
+                      onRemove={(index) => remove(index)}
+                    />
+                  ))}
+                </TableBody>
+              </Table>
+              <div className="flex">
+                <AddProduct onProductAdd={(value) => onProductAdd(value)} />
+              </div>
+              <Separator />
+              {showCalculation && showCalculation.length ? (
+                <Calculation />
+              ) : null}
+              <CustomField />
+              <div className="flex justify-end">
+                <Button type="submit">Save</Button>
+              </div>
             </div>
           </form>
         </Form>

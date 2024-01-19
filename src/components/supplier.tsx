@@ -58,14 +58,14 @@ export default function Supplier() {
                 </Button>
               </FormControl>
             </PopoverTrigger>
-            <PopoverContent className="PopoverContent p-0">
+            <PopoverContent className="PopoverContent">
               <Command>
                 <CommandInput
-                  placeholder="Search framework..."
+                  placeholder="Search suppliers..."
                   className="h-9"
                 />
                 <CommandEmpty>No supplier found.</CommandEmpty>
-                <CommandGroup>
+                <CommandGroup className="p-0">
                   {suppliers.map((supplier) => (
                     <CommandItem
                       value={supplier.label}

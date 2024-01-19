@@ -29,7 +29,7 @@ const ItemList: React.FC<Props> = (props) => {
   }
 
   return (
-    <TableRow>
+    <TableRow className="text-xs">
       <TableCell>
         {watchedItem.name}
         <FormField
@@ -41,7 +41,7 @@ const ItemList: React.FC<Props> = (props) => {
                 <Input
                   variant="dotted"
                   type="text"
-                  placeholder="add description"
+                  placeholder="Enter description"
                   {...field}
                 />
               </FormControl>
@@ -115,7 +115,7 @@ const ItemList: React.FC<Props> = (props) => {
       <TableCell>{amount}</TableCell>
       <TableCell>
         <Button variant="link" onClick={() => onRemove(index)}>
-          <X />
+          <X className="h-4 text-red-400" />
         </Button>
       </TableCell>
     </TableRow>

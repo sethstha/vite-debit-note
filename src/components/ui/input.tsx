@@ -13,7 +13,7 @@ const inputVariants = cva(
     variants: {
       variant: {
         default: "rounded-md border border-gray-100",
-        dotted: "bg-transparent border-b-2 border-dotted  border-gray-400",
+        dotted: "bg-transparent border-b border-dotted  border-gray-400",
       },
     },
     defaultVariants: {
