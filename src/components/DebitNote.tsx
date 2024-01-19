@@ -42,7 +42,7 @@ import Supplier from "@/components/Supplier";
 import Calculation from "@/components/Calculation";
 import Date from "@/components/Date";
 
-export default function DebitNote() {
+const DebitNote = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [code, setCode] = useState<string>();
 
@@ -163,4 +163,6 @@ export default function DebitNote() {
       </Dialog>
     </div>
   );
-}
+};
+
+export default DebitNote;

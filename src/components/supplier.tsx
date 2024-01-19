@@ -24,7 +24,7 @@ import { DebitNote } from "@/schemas";
 import { CheckIcon, ChevronDown } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 
-export default function Supplier() {
+const Supplier = () => {
   const { control, setValue } = useFormContext<DebitNote>();
   return (
     <FormField
@@ -95,4 +95,6 @@ export default function Supplier() {
       )}
     />
   );
-}
+};
+
+export default Supplier;
