@@ -6,6 +6,18 @@ export const debitNodeSchema = z.object({
     required_error: "Date is required",
   }),
   reference: z.string().min(2),
+  items: z.array(
+    z.object({
+      item: z.string(),
+      batch: z.string(),
+      warehouse: z.string(),
+      qty: z.number(),
+      rate: z.number(),
+      discount: z.number(),
+      tax: z.number(),
+      amount: z.number(),
+    })
+  ),
 });
 
 export type DebitNode = z.infer<typeof debitNodeSchema>;
