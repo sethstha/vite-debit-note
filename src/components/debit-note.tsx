@@ -1,3 +1,5 @@
+import ItemList from "@/components/ItemList";
+import AddProduct from "@/components/add-product";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -10,7 +12,6 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -23,6 +24,13 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { suppliers } from "@/data";
 import { cn } from "@/lib/utils";
 import { DebitNode, debitNodeSchema } from "@/schemas";
@@ -137,7 +145,7 @@ export default function DebitNote() {
                   )}
                 />
               </div>
-              <div className="space-y-4 pt-2">
+              <div className="space-y-4">
                 <FormField
                   control={form.control}
                   name="date"
@@ -181,7 +189,25 @@ export default function DebitNote() {
                 />
               </div>
             </div>
-
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[400px]">Item/Product</TableHead>
+                  <TableHead>Qty</TableHead>
+                  <TableHead>Rate</TableHead>
+                  <TableHead>Discount</TableHead>
+                  <TableHead>Tax</TableHead>
+                  <TableHead>Amount</TableHead>
+                  <TableHead></TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <ItemList />
+              </TableBody>
+            </Table>
+            <div className="flex">
+              <AddProduct />
+            </div>
             <Button type="submit">Submit</Button>
           </form>
         </Form>

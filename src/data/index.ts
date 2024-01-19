@@ -20,3 +20,11 @@ export const suppliers = [
   { label: "Nano Nest", value: "NN" },
   { label: "Quasar Tech", value: "QT" },
 ];
+
+export const items = [
+  { name: "Old durbar 750ml", sku: "25684", batch: "256848A", price: 2564.0 },
+  { name: "Old durbar 375ml", sku: "25681", batch: "256848A", price: 2564.0 },
+  { name: "Old durbar 175ml", sku: "25682", batch: "256848A", price: 2564.0 },
+  { name: "Old durbar 1000ml", sku: "25683", batch: "256848A", price: 2564.0 },
+  { name: "Old durbar 2000ml", sku: "25685", batch: "256848A", price: 2564.0 },
+];
