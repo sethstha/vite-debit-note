@@ -22,6 +22,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { items } from "@/data";
 
 import { DebitNode, debitNodeSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -38,7 +39,7 @@ export default function DebitNote() {
     },
   });
 
-  const { fields, prepend, append, remove, insert } = useFieldArray<DebitNode>({
+  const { fields, append, remove } = useFieldArray<DebitNode>({
     control: form.control,
     name: "items",
   });
@@ -48,17 +49,16 @@ export default function DebitNote() {
   };
 
   const onProductAdd = (value: string) => {
-    console.log(value);
+    const currentItem = items.find((item) => item.sku === value) ?? items[0];
     append({
-      name: "soemthing",
-      amount: 200,
-      batch: "Sassas",
+      name: currentItem.name,
+      rate: currentItem.price,
+      batch: currentItem.batch,
       discount: 0,
       qty: 1,
-      rate: 2000,
-      sku: "sasas",
+      sku: currentItem.sku,
       tax: 13,
-      warehouse: "sasa22",
+      amount: currentItem.price,
     });
   };
 

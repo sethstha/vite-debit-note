@@ -10,7 +10,6 @@ export const debitNodeSchema = z.object({
     z.object({
       name: z.string(),
       batch: z.string(),
-      warehouse: z.string(),
       qty: z.number(),
       rate: z.number(),
       discount: z.number(),
