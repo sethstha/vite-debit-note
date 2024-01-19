@@ -1,5 +1,12 @@
 import { Button } from "@/components/ui/button";
 import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "@/components/ui/command";
+import {
   FormControl,
   FormField,
   FormItem,
@@ -14,13 +21,7 @@ import {
 import { suppliers } from "@/data";
 import { cn } from "@/lib/utils";
 import { DebitNode } from "@/schemas";
-import {
-  CommandInput,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
-} from "@/components/ui/command";
-import { ChevronsUpDown, Command, ChevronDown } from "lucide-react";
+import { CheckIcon, ChevronDown } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 
 export default function Supplier() {
@@ -32,49 +33,52 @@ export default function Supplier() {
       render={({ field }) => (
         <FormItem className="flex flex-col">
           <FormLabel>
-            Supplier Name <span className="text-red-400">*</span>
+            Language <span className="text-red-400">*</span>
           </FormLabel>
           <Popover>
             <PopoverTrigger asChild>
               <FormControl>
                 <Button
-                  variant="outline"
+                  variant="secondary"
                   role="combobox"
                   className={cn(
                     "justify-between",
                     !field.value && "text-muted-foreground"
                   )}
                 >
-                  {field.value
-                    ? suppliers.find(
-                        (suppliers) => suppliers.value === field.value
-                      )?.label
-                    : "Eg: Globex Corporation"}
-                  <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                  {field.value ? (
+                    suppliers.find((supplier) => supplier.value === field.value)
+                      ?.label
+                  ) : (
+                    <span className="text-xs text-gray-400 font-normal">
+                      Eg: Globex Corporation
+                    </span>
+                  )}
+                  <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
               </FormControl>
             </PopoverTrigger>
             <PopoverContent className="PopoverContent p-0">
               <Command>
                 <CommandInput
-                  placeholder="Search for suppliers"
+                  placeholder="Search framework..."
                   className="h-9"
                 />
                 <CommandEmpty>No supplier found.</CommandEmpty>
                 <CommandGroup>
-                  {suppliers.map((suppliers) => (
+                  {suppliers.map((supplier) => (
                     <CommandItem
-                      value={suppliers.label}
-                      key={suppliers.value}
+                      value={supplier.label}
+                      key={supplier.value}
                       onSelect={() => {
-                        setValue("supplier", suppliers.value);
+                        setValue("supplier", supplier.value);
                       }}
                     >
-                      {suppliers.label}
-                      <ChevronDown
+                      {supplier.label}
+                      <CheckIcon
                         className={cn(
                           "ml-auto h-4 w-4",
-                          suppliers.value === field.value
+                          supplier.value === field.value
                             ? "opacity-100"
                             : "opacity-0"
                         )}

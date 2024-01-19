@@ -30,7 +30,26 @@ const ItemList: React.FC<Props> = (props) => {
 
   return (
     <TableRow>
-      <TableCell>{watchedItem.name}</TableCell>
+      <TableCell>
+        {watchedItem.name}
+        <FormField
+          control={control}
+          name={`items.${index}.description`}
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <Input
+                  variant="dotted"
+                  type="text"
+                  placeholder="add description"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </TableCell>
       <TableCell className="w-[100px]">
         <FormField
           control={control}
@@ -38,7 +57,12 @@ const ItemList: React.FC<Props> = (props) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input type="number" placeholder="quantity" {...field} />
+                <Input
+                  variant="dotted"
+                  type="number"
+                  placeholder="quantity"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -52,7 +76,12 @@ const ItemList: React.FC<Props> = (props) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input type="number" placeholder="rate" {...field} />
+                <Input
+                  variant="dotted"
+                  type="number"
+                  placeholder="rate"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -66,7 +95,12 @@ const ItemList: React.FC<Props> = (props) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input type="number" placeholder="quantity" {...field} />
+                <Input
+                  variant="dotted"
+                  type="number"
+                  placeholder="quantity"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -75,19 +109,7 @@ const ItemList: React.FC<Props> = (props) => {
       </TableCell>
       <TableCell className="w-[150px]">
         <div className="flex items-center">
-          <FormField
-            control={control}
-            name={`items.${index}.tax`}
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input type="number" placeholder="quantity" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <span>VAT</span>
+          <span>13% VAT</span>
         </div>
       </TableCell>
       <TableCell>{amount}</TableCell>

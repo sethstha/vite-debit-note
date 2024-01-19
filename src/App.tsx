@@ -1,4 +1,4 @@
-import DebitNote from "@/components/debit-note";
+import DebitNote from "@/components/DebitNode";
 
 function App() {
   return <DebitNote />;

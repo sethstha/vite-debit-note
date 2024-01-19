@@ -6,7 +6,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { DebitNode } from "@/schemas";
 import { useFormContext } from "react-hook-form";
@@ -15,10 +15,12 @@ const Calculation = () => {
   const { control, watch } = useFormContext<DebitNode>();
   const watchedItem = watch("items");
   let total = 0,
-    discount = 0;
+    discount = 0,
+    vat = 0,
+    taxTotal = 0,
+    grandTotal = 0;
 
   if (watchedItem) {
-    console.log(watchedItem);
     total = watchedItem
       .map(
         (item) =>
@@ -29,6 +31,9 @@ const Calculation = () => {
     discount = watchedItem
       .map((item) => item.discount)
       .reduce((prev, curr) => prev + parseFloat(curr), 0);
+    vat = (13 / 100) * total;
+    taxTotal = total + vat;
+    grandTotal = taxTotal;
   }
   return (
     <div className="grid grid-cols-2 gap-8">
@@ -52,34 +57,37 @@ const Calculation = () => {
           )}
         />
       </div>
-      <Table>
-        <TableBody>
-          <TableRow>
-            <TableCell>Total</TableCell>
-            <TableCell>{total}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Discount</TableCell>
-            <TableCell>{discount}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Non Taxable Total</TableCell>
-            <TableCell>0</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Taxable Total</TableCell>
-            <TableCell>0</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Vat</TableCell>
-            <TableCell>0</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Grand Total</TableCell>
-            <TableCell>0</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
+      <div className="space-y-4">
+        <div className="flex justify-between">
+          <span>Total</span>
+          <span>{total}</span>
+        </div>
+
+        <div className="flex justify-between">
+          <span>Discount</span>
+          <span>{discount}</span>
+        </div>
+
+        <div className="flex justify-between">
+          <span>Non Taxable Total</span>
+          <span>{total}</span>
+        </div>
+
+        <div className="flex justify-between">
+          <span>Taxable Total</span>
+          <span>{taxTotal}</span>
+        </div>
+
+        <div className="flex justify-between">
+          <span>Vat</span>
+          <span>{vat.toFixed(2)}</span>
+        </div>
+        <Separator />
+        <div className="flex justify-between">
+          <span>Grand Total</span>
+          <span>{grandTotal}</span>
+        </div>
+      </div>
     </div>
   );
 };

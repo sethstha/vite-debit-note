@@ -5,7 +5,7 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: #00171f;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -72,8 +72,10 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: "DM Sans";
   }
 }
+
 .PopoverContent {
   width: var(--radix-popover-trigger-width);
   max-height: var(--radix-popover-content-available-height);

@@ -16,7 +16,7 @@ export const suppliers = [
   { label: "Vortex Dynamics", value: "VD" },
   { label: "Cogni Craft", value: "CC" },
   { label: "Data Pulse", value: "DP" },
-  { label: "Swift Sync", value: "SS" },
+  { label: "Swift Sync", value: "SSS" },
   { label: "Nano Nest", value: "NN" },
   { label: "Quasar Tech", value: "QT" },
 ];

@@ -1,8 +1,7 @@
 import ItemList from "@/components/ItemList";
-import AddProduct from "@/components/add-product";
-import Calculation from "@/components/caclunation";
-import Date from "@/components/date";
-import Supplier from "@/components/supplier";
+import AddProduct from "@/components/AddProduct";
+import CustomField from "@/components/CustomField";
+
 import { Button } from "@/components/ui/button";
 
 import {
@@ -30,6 +29,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { X } from "lucide-react";
 import { useFieldArray, useForm } from "react-hook-form";
+import Calculation from "@/components/calculation";
+import Supplier from "@/components/supplier";
+import Date from "@/components/date";
 
 export default function DebitNote() {
   const form = useForm<DebitNode>({
@@ -45,10 +47,6 @@ export default function DebitNote() {
     name: "items",
   });
 
-  const onSubmit = (values: DebitNode) => {
-    // console.log(values);
-  };
-
   const onProductAdd = (value: string) => {
     const currentItem = items.find((item) => item.sku === value) ?? items[0];
     append({
@@ -62,16 +60,20 @@ export default function DebitNote() {
     });
   };
 
+  const showCalculation = form.watch("items");
+
   return (
     <div className="container">
-      <div className="p-6 shadow-box">
-        <div className="flex justify-between">
-          <div className="h1 text-2xl">New Debit note</div>
-          <X />
+      <div className="p-6 shadow-box space-y-4">
+        <div className="space-y-2">
+          <div className="flex justify-between">
+            <h1 className="text-lg font-bold">New Debit note</h1>
+            <X />
+          </div>
+          <Separator />
         </div>
-        <Separator />
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form>
             <div className="grid grid-cols-2 items-start justify-center gap-6">
               <div className="space-y-4">
                 <Supplier />
@@ -80,7 +82,9 @@ export default function DebitNote() {
                   name="reference"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Reference no</FormLabel>
+                      <FormLabel>
+                        Reference no <span className="text-red-400">*</span>
+                      </FormLabel>
                       <FormControl>
                         <Input placeholder="reference no" {...field} />
                       </FormControl>
@@ -105,9 +109,9 @@ export default function DebitNote() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {fields.map((item, index) => (
+                {fields.map((_, index) => (
                   <ItemList
-                    key={item.sku}
+                    key={index}
                     index={index}
                     onRemove={(index) => remove(index)}
                   />
@@ -117,8 +121,11 @@ export default function DebitNote() {
             <div className="flex">
               <AddProduct onProductAdd={(value) => onProductAdd(value)} />
             </div>
-            <Calculation />
-            <Button type="submit">Submit</Button>
+            {showCalculation && showCalculation.length ? <Calculation /> : null}
+            <CustomField />
+            <div className="flex justify-end">
+              <Button type="submit">Submit</Button>
+            </div>
           </form>
         </Form>
       </div>
