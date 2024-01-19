@@ -38,13 +38,28 @@ export default function DebitNote() {
     },
   });
 
-  const { fields, prepend, append, remove, insert } = useFieldArray({
+  const { fields, prepend, append, remove, insert } = useFieldArray<DebitNode>({
     control: form.control,
     name: "items",
   });
 
   const onSubmit = (values: DebitNode) => {
     console.log(values);
+  };
+
+  const onProductAdd = (value: string) => {
+    console.log(value);
+    append({
+      name: "soemthing",
+      amount: 200,
+      batch: "Sassas",
+      discount: 0,
+      qty: 1,
+      rate: 2000,
+      sku: "sasas",
+      tax: 13,
+      warehouse: "sasa22",
+    });
   };
 
   return (
@@ -90,11 +105,17 @@ export default function DebitNote() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <ItemList />
+                {fields.map((item, index) => (
+                  <ItemList
+                    key={item.sku}
+                    index={index}
+                    onRemove={(index) => remove(index)}
+                  />
+                ))}
               </TableBody>
             </Table>
             <div className="flex">
-              <AddProduct />
+              <AddProduct onProductAdd={(value) => onProductAdd(value)} />
             </div>
             <Button type="submit">Submit</Button>
           </form>

@@ -14,19 +14,13 @@ import {
 import { items } from "@/data";
 import { useState } from "react";
 
-export default function AddProduct() {
+interface Props {
+  onProductAdd: (value: string) => void;
+}
+const AddProduct: React.FC<Props> = (props) => {
+  const { onProductAdd } = props;
   const [open, setOpen] = useState(false);
 
-  const onItemSelect = (value: string) => {
-    console.log(value);
-
-    console.log(
-      items.find((item) => {
-        return item.sku === value;
-      })
-    );
-    setOpen(false);
-  };
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -41,7 +35,7 @@ export default function AddProduct() {
               <CommandItem
                 value={item.sku}
                 key={item.sku}
-                onSelect={(value) => onItemSelect(value)}
+                onSelect={(value) => onProductAdd(value)}
               >
                 <div className="flex justify-between w-full">
                   <div className="space-y-2">
@@ -60,4 +54,6 @@ export default function AddProduct() {
       </PopoverContent>
     </Popover>
   );
-}
+};
+
+export default AddProduct;

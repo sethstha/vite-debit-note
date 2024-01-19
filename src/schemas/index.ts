@@ -8,7 +8,7 @@ export const debitNodeSchema = z.object({
   reference: z.string().min(2),
   items: z.array(
     z.object({
-      item: z.string(),
+      name: z.string(),
       batch: z.string(),
       warehouse: z.string(),
       qty: z.number(),
@@ -16,6 +16,7 @@ export const debitNodeSchema = z.object({
       discount: z.number(),
       tax: z.number(),
       amount: z.number(),
+      sku: z.string(),
     })
   ),
 });
